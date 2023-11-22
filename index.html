@@ -28,13 +28,18 @@
 <body>
 
 <h1>Countdown Timer</h1>
+<label for="myIbput">Message: </label>
+<input type="text" id="myInput" placeholder="Hidden Message">
+
+<button onclick="toggleInput()">Hide Message</button>
 <label for="minutes">Minutes: </label>
 <input type="number" id="minutes" placeholder="Enter minutes">
 
 <label for="seconds">Seconds: </label>
 <input type="number" id="seconds" placeholder="Enter seconds">
+<br>
 
-<button onclick="startTimer()">Start Timer</button>
+<button onclick="startTimer()" id="myButton">Start Timer</button>
 
 <div id="timer-container">
     <p id="timer"></p>
@@ -50,6 +55,7 @@
     function startTimer() {
         var minutes = parseInt(document.getElementById('minutes').value) || 0;
         var seconds = parseInt(document.getElementById('seconds').value) || 0;
+        var message = document.getElementById('myInput').value;
 
         var totalSeconds = minutes * 60 + seconds;
 
@@ -70,7 +76,7 @@
                 if (totalSeconds <= 0) {
                     clearInterval(timer);
                     showConfetty();
-                    showMessage("Merry Christmas and Happy New Year.");
+                    showMessage(message);
                 }
             }, 1000);
         }
@@ -124,6 +130,18 @@ fire(0.1, {
   spread: 120,
   startVelocity: 45,
 });
+    }
+    function toggleInput() {
+        var input = document.getElementById('myInput');
+        var button = document.getElementById('');
+        document.getElementById('message').value = input;
+
+        // Toggle the display property
+        if (input.style.display === 'none' || input.style.display === '') {
+            input.style.display = 'block';
+        } else {
+            input.style.display = 'none';
+        }
     }
     
 </script>
