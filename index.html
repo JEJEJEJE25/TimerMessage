@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #timer-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        #message-container {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Countdown Timer</h1>
+<label for="minutes">Minutes: </label>
+<input type="number" id="minutes" placeholder="Enter minutes">
+
+<label for="seconds">Seconds: </label>
+<input type="number" id="seconds" placeholder="Enter seconds">
+
+<button onclick="startTimer()">Start Timer</button>
+
+<div id="timer-container">
+    <p id="timer"></p>
+</div>
+
+<div id="message-container">
+    <p id="message"></p>
+</div>
+
+<script>
+    var timer;
+
+    function startTimer() {
+        var minutes = parseInt(document.getElementById('minutes').value) || 0;
+        var seconds = parseInt(document.getElementById('seconds').value) || 0;
+
+        var totalSeconds = minutes * 60 + seconds;
+
+        if (totalSeconds > 0) {
+            var timerContainer = document.getElementById('timer-container');
+            var messageContainer = document.getElementById('message-container');
+
+            timerContainer.style.display = 'block';
+
+            timer = setInterval(function () {
+                totalSeconds--;
+
+                var minutes = Math.floor(totalSeconds / 60);
+                var seconds = totalSeconds % 60;
+
+                document.getElementById('timer').innerHTML = minutes + "m " + seconds + "s";
+
+                if (totalSeconds <= 0) {
+                    clearInterval(timer);
+                    showMessage("Merry Christmas and Happy New Year.");
+                }
+            }, 1000);
+        }
+    }
+
+    function showMessage(message) {
+        var messageContainer = document.getElementById('message-container');
+        var messageElement = document.getElementById('message');
+
+        messageElement.innerHTML = message;
+        messageContainer.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
+
